@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Airtasker Clone - Home</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div class="outer-container">
+			<nav>
+				<ul class="sidebar">
+					<li onclick="hideSidebar()">
+						<a href="#"
+							><img src="images/close.svg" width="26px" height="26px" />
+						</a>
+					</li>
+
+					<li>
+						<button><a href="#">Post a Task</a></button>
+					</li>
+
+					<li><a href="#">Categories</a></li>
+					<li><a href="#">Browse Tasks</a></li>
+					<li><a href="#">How it works</a></li>
+					<li><a href="#">Sign Up</a></li>
+					<li><a href="#">Login</a></li>
+					<li>
+						<button><a href="#">Become a Tasker</a></button>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<a href="index.html"
+							><img src="images/logo.png" width="130px" height="50px" />
+						</a>
+					</li>
+
+					<li class="hideOnMobile">
+						<button><a href="#">Post a Task</a></button>
+					</li>
+
+					<li class="hideOnMobile"><a href="#">Categories</a></li>
+					<li class="hideOnMobile"><a href="#">Browse Tasks</a></li>
+					<li class="hideOnMobile"><a href="#">How it works</a></li>
+					<li class="hideOnMobile"><a href="#">Sign Up</a></li>
+					<li class="hideOnMobile"><a href="#">Login</a></li>
+					<li class="hideOnMobile">
+						<button><a href="#">Become a Tasker</a></button>
+					</li class="hideOnMobile">
+					<li class="menu-button" onclick="showSidebar()">
+						<a href="#"><img src="images/menu.svg" height="26" width="26" /></a>
+					</li>
+				</ul>
+			</nav>
+
+			<script>
+				function showSidebar() {
+					const sidebar = document.querySelector(".sidebar");
+					sidebar.style.display = "flex";
+				}
+
+				function hideSidebar() {
+					const sidebar = document.querySelector(".sidebar");
+					sidebar.style.display = "none";
+				}
+			</script>
+
+			<hr />
+
+			<section class="hero">
+				<div class="hero1">
+					<img src="images/image2.png" alt="" width="500px" height="500px" />
+					<img src="images/image1.png" alt="" width="500px" height="500px" />
+				</div>
+
+				<h1>Get more done with Airtasker</h1>
+				<p>Post a task and get offers from trusted Taskers in minutes</p>
+				<button>Post your task for free</button>
+				<button>Earn money as a Tasker</button>
+			</section>
+
+			<section class="categories">
+				<h2>Browse Popular Categories</h2>
+				<div class="category-list">
+					<div class="category">Cleaning</div>
+					<div class="category">Delivery</div>
+					<div class="category">Handyman</div>
+					<div class="category">Gardening</div>
+					<div class="category">Assembly</div>
+					<div class="category">Moving</div>
+				</div>
+			</section>
+
+			<section class="how-it-works">
+				<h2>How it Works</h2>
+				<div class="steps">
+					<div class="step">
+						<h3>1. Post a task</h3>
+						<p>Tell us what you need done</p>
+					</div>
+					<div class="step">
+						<h3>2. Review offers</h3>
+						<p>Receive offers from Taskers</p>
+					</div>
+					<div class="step">
+						<h3>3. Get it done</h3>
+						<p>Choose the best person and get it done</p>
+					</div>
+				</div>
+			</section>
+
+			<footer>
+				<p>&copy; 2025 Airtasker Clone. All rights reserved.</p>
+			</footer>
+		</div>
+	</body>
+</html>

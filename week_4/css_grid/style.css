@@ -1,0 +1,45 @@
+@import url(./reset.css);
+
+body {
+  background-color: bisque;
+}
+
+.flex-container {
+  background-color: white;
+  width: 75vw;
+  height: 75vh;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: [first-col] 100px [second-col] 100px [third-col] 100px [last-col];
+  grid-template-rows: [first-row] 100px [second-row] 100px [third-row] 100px [last-row];
+  grid-template-areas:
+    "header  header  header"
+    "body  body  body"
+    "footer footer footer";
+  gap: 15px;
+  justify-items: stretch;
+  align-items: stretch;
+  justify-content: center;
+  align-content: center;
+  grid-auto-rows: 100px;
+}
+
+.item {
+  padding: 10px;
+  border: 1px solid grey;
+  box-shadow: 2px 2px 5px rgba(158, 22, 22, 0.2);
+}
+
+.item:nth-child(2) {
+  grid-area: body;
+}
+
+.item:last-child {
+  grid-area: footer;
+}
+
+.item-with-children {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}

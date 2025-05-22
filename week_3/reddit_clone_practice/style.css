@@ -1,0 +1,259 @@
+/* Reset default styles */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "IBM Plex Sans";
+	font-size: medium;
+	font-weight: thin;
+	color: black;
+}
+
+/* Body Layout */
+body {
+	display: inline-block;
+	flex-direction: column;
+	height: 100vh;
+	background-color: white;
+}
+
+/* Top Bar */
+.top-bar {
+	width: 100%;
+	height: 65px;
+	border: 1px solid lightgrey;
+	background-color: white;
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 20px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+}
+
+/* Search Bar */
+.search-container {
+	flex-grow: 1; /* Allows it to take available space */
+	text-align: center;
+}
+
+.search-container input {
+	width: 600px;
+	padding: 5px;
+	border-radius: 50px;
+	border: 0 solid black;
+	height: 40px;
+	background-color: #e3e9ed;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	color: black;
+	font-weight: normal;
+}
+
+.search-container input:hover {
+	background-color: #d5d9dd;
+}
+
+/* Login Button */
+.buttons {
+	display: flex;
+	gap: 9px;
+	border: none;
+}
+
+.buttons button {
+	border: 1px solid black;
+	background: white;
+	color: black;
+	cursor: pointer;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
+
+.buttons button :nth-child(3) {
+	width: 60px;
+	height: 60px;
+	border-radius: 30%;
+}
+
+.buttons button:hover {
+	background: #d7dadc;
+}
+
+/* Sidebar Navigation */
+.sidebar {
+	width: 270px;
+	border: 1px solid lightgrey;
+	background-color: white;
+	position: fixed;
+	top: 50px;
+	left: 0;
+	bottom: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+.sidebar ul {
+	list-style: none;
+	flex-grow: 1;
+	margin: 30px 30px 30px 15px;
+}
+
+.sidebar ul li {
+	display: flex;
+	flex-direction: column;
+	gap: 1;
+	font-family: "IBM Plex Sans";
+	color: grey;
+	margin-top: 15px;
+	border: 1px solid rgb(18, 9, 9);
+	border-radius: 10px;
+	padding: 10px;
+}
+.sidebar ul li hr {
+	color: grey;
+}
+
+.sidebar ul li a {
+	text-decoration: none;
+	color: black;
+	text-decoration: none;
+	font-size: 18px;
+	padding: 1px;
+}
+
+.sidebar ul li:hover {
+	text-decoration: none;
+	background: #f6f8f9;
+}
+
+/* Dropdown items */
+details summary {
+	border: 1px solid white;
+	padding: 4px;
+	color: black;
+	text-align: center;
+	cursor: pointer;
+	border-radius: 10px;
+}
+
+details summary:hover {
+	background-color: #f6f8f9;
+}
+
+details {
+	position: relative;
+}
+
+summary {
+	list-style: none;
+}
+
+summary::-webkit-details-marker {
+	display: none;
+}
+
+.main-container {
+	display: flex; /* Enables flexbox */
+	flex-direction: row;
+	gap: 30px; /* Adds spacing */
+	width: 55%;
+	margin-top: 100px;
+	margin-left: 550px;
+}
+
+/* Main Content */
+.content {
+	display: flex;
+	flex-direction: column;
+	flex: 2; /* Takes more space */
+	background-color: #f6f8f9;
+	padding: 20px;
+	border-radius: 20px;
+}
+
+.side-content {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: auto;
+	flex: 1; /* Takes less space */
+	background-color: #f6f8f9;
+	padding: 20px;
+	border-radius: 20px;
+}
+
+/* Post Styling */
+article {
+	background: #fff;
+	padding: 15px;
+	border-radius: 10px;
+	margin-bottom: 20px;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+article h3 {
+	color: black;
+}
+
+article img {
+	border-radius: 10px;
+}
+
+article hr {
+	margin-top: 10px;
+	border: 0.5px solid #ddd;
+}
+
+.explore {
+	display: flex;
+
+	flex-direction: row;
+
+	
+	flex-wrap: wrap;
+
+	gap: 1rem;
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+	.sidebar {
+		width: 200px;
+	}
+
+	.content {
+		margin-left: 200px;
+	}
+}
+
+@media (max-width: 600px) {
+	body {
+		display: block;
+	}
+
+	.top-bar {
+		flex-direction: column;
+		height: auto;
+	}
+
+	.top-bar input {
+		width: 80%;
+		margin-top: 5px;
+	}
+
+	.sidebar {
+		width: 100%;
+		height: auto;
+		position: relative;
+	}
+
+	.content {
+		margin-left: 0;
+		padding: 15px;
+	}
+	.side-content {
+		margin: auto;
+	}
+}

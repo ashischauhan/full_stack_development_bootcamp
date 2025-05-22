@@ -1,0 +1,197 @@
+@import url(./reset.css);
+
+@font-face {
+	font-family: "Netflix Sans";
+	src: url(./fonts/NetflixSans_W_Rg.woff2);
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "Netflix Sans";
+	src: url(./fonts/NetflixSans_W_Bd.woff2);
+	font-weight: 900;
+}
+
+@font-face {
+	font-family: "Netflix Sans";
+	src: url(./fonts/NetflixSans_W_Md.woff2);
+	font-weight: 600;
+}
+
+:root {
+	--primary-font-family: "Netflix Sans", "Helvetica Neve", "Segoe UI", Roboto,
+		Ubuntu;
+	--primary-color: rgb(229, 9, 20);
+	--secondary-color: #fff;
+	--body-bg: #000;
+	--secondary-bg: rgba(128, 128, 128, 0.4);
+	--font-size: 16px;
+}
+
+body {
+	background-color: var(--body-bg);
+	color: var(--secondary-color);
+	font-family: var(--primary-font-family);
+	font-size: 1rem;
+}
+
+p {
+	line-height: 1.5rem;
+}
+
+.primary-button {
+	color: var(--secondary-color);
+	background-color: var(--primary-color);
+}
+
+.secondary-button {
+	color: var(--secondary-color);
+	background-color: var(--secondary-bg);
+}
+
+a {
+	color: var(--secondary-color);
+	text-decoration: underline;
+}
+
+.primary-link-btn {
+	background-color: var(--secondary-color);
+	color: var(--body-bg);
+	font-size: 0.87rem;
+	font-weight: 600;
+	padding: 4px 16px;
+	border-radius: 100px;
+	text-decoration: none;
+	line-height: 1.5rem;
+	display: inline-block;
+	transition: all;
+	transition-duration: 100ms;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.68, 0.06);
+}
+
+.primary-link-btn:hover {
+	background-color: #bab7b7;
+}
+/* start landing page */
+
+.blurry-bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	overflow: hidden;
+	z-index: -1;
+}
+
+.blurry-bg .blurry-bg-inner-1 {
+	background-image: url(./images/background_img.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 50% 50%;
+	height: 150vh;
+	filter: blur(16px);
+	mask-image: linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 0.8) 0%,
+		rgba(0, 0, 0, 0.7889) 8.333%,
+		rgba(0, 0, 0, 0.7556) 16.67%,
+		rgba(0, 0, 0, 0.7) 25%,
+		rgba(0, 0, 0, 0.6222) 33.33%,
+		rgba(0, 0, 0, 0.5222) 41.67%,
+		rgba(0, 0, 0, 0.4) 50%,
+		rgba(0, 0, 0, 0.2778) 58.33%,
+		rgba(0, 0, 0, 0.1778) 66.67%,
+		rgba(0, 0, 0, 0.1) 75%,
+		rgba(0, 0, 0, 0.04444) 83.33%,
+		rgba(0, 0, 0, 0.01111) 91.67%,
+		rgba(0, 0, 0, 0) 100%
+	);
+}
+
+.blurry-bg .blurry-bg-inner-2 {
+	background: radial-gradient(
+		92.16% 100% at 49.87% 0%,
+		rgba(247, 99, 107, 0.3) 19.86%,
+		rgba(0, 0, 0, 0) 100%
+	);
+	position: absolute;
+	height: 100vh;
+	width: 100%;
+	top: 0;
+}
+
+/* end landing page */
+
+.page-outer-wrapper {
+	display: flex;
+	justify-content: center;
+	background: linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 0.8) 0%,
+		rgba(0, 0, 0, 0.7889) 8.333%,
+		rgba(0, 0, 0, 0.7556) 16.67%,
+		rgba(0, 0, 0, 0.7) 25%,
+		rgba(0, 0, 0, 0.6222) 33.33%,
+		rgba(0, 0, 0, 0.5222) 41.67%,
+		rgba(0, 0, 0, 0.4) 50%,
+		rgba(0, 0, 0, 0.2778) 58.33%,
+		rgba(0, 0, 0, 0.1778) 66.67%,
+		rgba(0, 0, 0, 0.1) 75%,
+		rgba(0, 0, 0, 0.04444) 83.33%,
+		rgba(0, 0, 0, 0.01111) 91.67%,
+		rgba(0, 0, 0, 0) 100%
+	);
+}
+
+.page-wrapper {
+	width: 96%;
+}
+
+.page-header {
+	display: flex;
+	justify-content: space-between;
+	padding: 1.5rem 0;
+	justify-items: center;
+}
+
+.page-header svg {
+	width: 9.25rem;
+	height: 2.5rem;
+	color: var(--primary-color);
+	fill: var(--primary-color);
+}
+
+.page-header .primary-link-btn {
+	align-self: center;
+}
+
+/* Start Hero Section */
+.hero-banner {
+	background-color: var(--body-bg);
+	height: calc(100vh - 110px);
+	padding: 2rem;
+	box-sizing: border-box;
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+}
+
+.hero-banner h2 {
+	font-size: 4rem;
+	font-weight: 900;
+	max-width: 720px;
+	width: 100%;
+	text-align: center;
+}
+
+/* End Hero Section */
+
+@media screen and (max-width: 1280px) {
+	:root {
+		font-size: 14px;
+	}
+}

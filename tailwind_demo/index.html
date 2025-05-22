@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tailwind Demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <style type="text/tailwindcss">
+      @theme {
+        --color-fancy: #e60076;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 p-4">
+    <div
+      class="bg-white border border-gray-200 rounded-md py-2 px-2 lg:px-10 2xl:px-20 flex flex-col-reverse gap-4 lg:flex-row lg:py-8"
+    >
+      <div class="flex flex-col gap-4 p-4 pt-0">
+        <h3 class="hidden sm:block text-gray-500">Entire house</h3>
+        <div class="flex justify-between">
+          <h2 class="text-3xl hidden sm:block font-semibold">
+            Beach House on Lake Huron
+          </h2>
+          <a
+            href="#"
+            class="bg-fancy text-white block rounded-md text-center px-3 py-2 hidden sm:block lg:hidden"
+            >Check availability</a
+          >
+        </div>
+
+        <div class="text-sm flex gap-2 order-1">
+          <span class="text-fancy font-medium"
+            ><i class="fa-solid fa-star"></i>2.66</span
+          >
+          <span class="text-gray-500">(128 reviews)</span>
+          <span class="text-fancy font-medium">Bayfield, ON</span>
+        </div>
+
+        <p class="text-gray-600 text-sm order-3">
+          This sunny and spacious room is for those traveling light and looking
+          for a comfy and cozy place to lay their head for a night...
+          <a href="#" class="text-fancy font-bold sm:hidden">Show more</a>
+        </p>
+        <a href="#" class="text-fancy text-sm font-bold sm:inline order-4"
+          >Show more</a
+        >
+
+        <div class="order-2 sm:hidden lg:block order-5 w-max">
+          <a
+            href="#"
+            class="bg-fancy text-white block rounded-md text-center px-3 py-2"
+            >Check availability</a
+          >
+        </div>
+      </div>
+      <div
+        class="sm:flex sm:max-h-48 sm:overflow-hidden gap-2 md:grid md:grid-cols-[2fr_1fr_1fr] lg:grid-cols-[1fr_1fr] lg:grid-rows-[150px_150px] lg:max-h-full"
+      >
+        <div
+          class="max-h-48 overflow-hidden rounded-md relative lg:col-span-2 lg:max-h-[150px]"
+        >
+          <img
+            class="w-full h-48 object-cover object-center lg:max-h-[150px]"
+            src="https://tailwindcss.com/_next/static/media/responsive-1.fd2e9248.png"
+            alt=""
+          />
+          <div class="absolute left-6 bottom-6 z-2 sm:hidden">
+            <h3 class="text-white">Entire house</h3>
+            <div>
+              <h2 class="text-xl text-white">Beach House on Lake Huron</h2>
+            </div>
+          </div>
+          <div
+            class="absolute top-0 left-0 bottom-0 right-0 bg-linear-to-b from-transparent via-transparent to-gray-950 sm:hidden"
+          ></div>
+        </div>
+
+        <img
+          class="hidden sm:block sm:rounded w-full h-48 object-cover object-center lg:max-h-[150px]"
+          src="https://tailwindcss.com/_next/static/media/responsive-2.8cfea49d.png"
+          alt=""
+        />
+        <img
+          class="hidden md:block rounded w-full h-48 object-cover object-center lg:max-h-[150px]"
+          src="https://tailwindcss.com/_next/static/media/responsive-3.e7467feb.png"
+          alt=""
+        />
+        <img
+          class="hidden"
+          src="https://tailwindcss.com/_next/static/media/responsive-2.8cfea49d.png"
+          alt=""
+        />
+        <img
+          class="hidden"
+          src="https://tailwindcss.com/_next/static/media/responsive-3.e7467feb.png"
+          alt=""
+        />
+      </div>
+    </div>
+  </body>
+</html>
