@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Temperature Converter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Righteous&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              poppins: ["Poppins", "sans-serif"],
+              righteous: ["Righteous", "cursive"],
+            },
+            animation: {
+              "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+            },
+          },
+        },
+      };
+    </script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body
+    class="min-h-screen flex justify-center items-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-100 via-orange-400 to-red-800 p-5 font-poppins"
+  >
+    <div
+      class="w-full max-w-2xl bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-50/95 via-orange-200/90 to-orange-400/80 p-14 rounded-2xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] relative overflow-hidden border-2 border-orange-500/20 hover:shadow-[0_30px_60px_rgba(8,_112,_184,_0.8)] hover:scale-[1.02] hover:-translate-y-2 transition-all duration-500 perspective-1000 transform-gpu"
+    >
+      <h2
+        class="text-4xl font-righteous font-bold text-center mb-6 bg-gradient-to-r from-blue-900 to-cyan-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
+      >
+        Temperature Converter
+      </h2>
+      <p class="text-gray-700 text-center mb-6 text-lg">
+        Enter the temperature and select the unit to convert
+      </p>
+      <form onsubmit="return false" class="flex flex-col gap-4">
+        <input
+          type="text"
+          id="temp"
+          name="temp"
+          placeholder="Enter temperature"
+          class="w-full px-5 py-4 rounded-xl border-2 border-orange-400 text-lg font-medium text-blue-900 bg-white/90 shadow-inner hover:border-orange-500 hover:bg-white hover:scale-[1.02] focus:border-orange-500 focus:ring-2 focus:ring-orange-300 transition-all duration-300"
+        />
+
+        <select
+          name="from"
+          id="from"
+          class="w-full px-5 py-4 rounded-xl border-2 border-orange-400 text-lg font-medium text-blue-900 bg-white/90 shadow-inner hover:border-orange-500 hover:bg-white hover:scale-[1.02] focus:border-orange-500 focus:ring-2 focus:ring-orange-300 transition-all duration-300 appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23ff8c00\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpolyline points=\'6 9 12 15 18 9\'%3e%3c/polyline%3e%3c/svg%3e')] bg-no-repeat bg-[right_1rem_center] bg-[length:1.2em] pr-10 cursor-pointer"
+        >
+          <option value="">Select Unit</option>
+          <option value="celsius">Celsius</option>
+          <option value="fahrenheit">Fahrenheit</option>
+          <option value="kelvin">Kelvin</option>
+        </select>
+
+        <select
+          name="to"
+          id="to"
+          class="w-full px-5 py-4 rounded-xl border-2 border-orange-400 text-lg font-medium text-blue-900 bg-white/90 shadow-inner hover:border-orange-500 hover:bg-white hover:scale-[1.02] focus:border-orange-500 focus:ring-2 focus:ring-orange-300 transition-all duration-300 appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23ff8c00\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpolyline points=\'6 9 12 15 18 9\'%3e%3c/polyline%3e%3c/svg%3e')] bg-no-repeat bg-[right_1rem_center] bg-[length:1.2em] pr-10 cursor-pointer"
+        >
+          <option value="">To Unit</option>
+          <option value="celsius">Celsius</option>
+          <option value="fahrenheit">Fahrenheit</option>
+          <option value="kelvin">Kelvin</option>
+        </select>
+
+        <button
+          onclick="handleFormSubmit()"
+          class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-400 text-white text-lg font-medium shadow-lg hover:shadow-xl hover:-translate-y-1 active:translate-y-0 transition-all duration-300 relative overflow-hidden group"
+        >
+          <span
+            class="relative z-10 group-hover:scale-105 transition-transform duration-300"
+            >Convert</span
+          >
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-cyan-700 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          ></div>
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          ></div>
+        </button>
+      </form>
+      <p
+        id="result"
+        class="mt-8 font-semibold text-xl text-center p-6 rounded-2xl bg-white/95 shadow-lg border-2 border-blue-500 text-blue-900 hover:shadow-blue-500/30 hover:scale-[1.02] transition-all duration-300"
+      ></p>
+    </div>
+  </body>
+</html>
