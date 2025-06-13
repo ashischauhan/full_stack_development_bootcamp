@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fibonacci Generator</title>
+  </head>
+  <body>
+    <script>
+      function fibonacciGenerator(n) {
+        let output = [];
+        if (n === 1) {
+          output = [0];
+        } else if (n === 2) {
+          output = [0, 1];
+        } else {
+          output = [0, 1];
+          for (let i = 2; i < n; i++) {
+            output.push(output[output.length - 2] + output[output.length - 1]);
+          }
+        }
+        return output;
+      }
+
+      // Prompt user input
+      let userInput = prompt(
+        "Enter the number of Fibonacci numbers to generate:"
+      );
+      let n = parseInt(userInput);
+
+      // Generate and display result
+      let output = fibonacciGenerator(n);
+      document.write("<h2>Fibonacci Sequence:</h2>");
+      document.write("<p>" + output.join(", ") + "</p>");
+    </script>
+  </body>
+</html>
