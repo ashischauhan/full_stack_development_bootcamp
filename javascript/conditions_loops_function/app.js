@@ -132,3 +132,16 @@
 // console.log(isEven(4)); // true
 // console.log(createUser("Alice", 25, "USA")); // { name: 'Alice', age: 25, country: 'USA' }
 // console.log(createUser("Bob")); // { name: 'Bob', age: 20, country: 'Unknown' }
+
+// Functions Continued
+
+// const result = square(5);
+// console.log("Square of 5 is " + result);
+
+// const squareResult = addSquare(10, 20);
+// console.log(`Sum of 10 and 20 is ${squareResult}`);
+
+// const num = 10;
+// const factorialResult = factorial(Number(num));
+
+// console.log(`Factorial of ${num} is ${factorialResult}`);
