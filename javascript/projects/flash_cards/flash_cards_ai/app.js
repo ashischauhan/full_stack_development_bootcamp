@@ -447,6 +447,334 @@ const flashcards = [
     question: "How do you make a shadow on text?",
     answer: "Use the text-shadow property.",
   },
+  {
+    question:
+      "What is the difference between microtasks and macrotasks in JavaScript's event loop?",
+    answer:
+      "Microtasks (like Promise callbacks) are executed after the currently executing script and before any rendering or I/O tasks. Macrotasks (like setTimeout, setInterval) are scheduled to run after the current stack and microtasks are complete.",
+  },
+  {
+    question: "What is tail call optimization in JavaScript?",
+    answer:
+      "Tail call optimization is a feature where the JavaScript engine can optimize recursive function calls that are in tail position, preventing additional stack frames and improving performance. Not all engines implement this yet.",
+  },
+  {
+    question: "What is the Temporal API in JavaScript?",
+    answer:
+      "The Temporal API is a modern date/time API for JavaScript, providing better support for date and time manipulation than the existing Date object.",
+  },
+  {
+    question: "What is a WeakMap in JavaScript?",
+    answer:
+      "A WeakMap is a collection of key/value pairs where the keys must be objects and are weakly referenced, meaning they can be garbage collected if there are no other references.",
+  },
+  {
+    question: "What is a WeakSet in JavaScript?",
+    answer:
+      "A WeakSet is a collection of objects, where the objects are weakly referenced and can be garbage collected if there are no other references.",
+  },
+  {
+    question: "What is the Reflect API in JavaScript?",
+    answer:
+      "The Reflect API provides methods for interceptable JavaScript operations, making it easier to work with proxies and meta-programming.",
+  },
+  {
+    question: "What is a Proxy object in JavaScript?",
+    answer:
+      "A Proxy object allows you to define custom behavior for fundamental operations (e.g., property lookup, assignment, enumeration, function invocation).",
+  },
+  {
+    question: "What is the purpose of the BigInt type in JavaScript?",
+    answer:
+      "BigInt is a built-in object that provides a way to represent whole numbers larger than 2^53 - 1, which is the largest number JavaScript can reliably represent with the Number type.",
+  },
+  {
+    question:
+      "What is the difference between Object.preventExtensions(), Object.seal(), and Object.freeze()?",
+    answer:
+      "Object.preventExtensions() prevents new properties from being added, Object.seal() also marks all existing properties as non-configurable, and Object.freeze() makes an object immutable.",
+  },
+  {
+    question: "What is the purpose of the global object in JavaScript?",
+    answer:
+      "The global object provides variables and functions that are available anywhere in your code. In browsers, it's 'window'; in Node.js, it's 'global'.",
+  },
+  {
+    question:
+      "What is the difference between module.exports and exports in Node.js?",
+    answer:
+      "Both are used to export modules, but module.exports is the actual object that gets returned as the module, while exports is a reference to module.exports.",
+  },
+  {
+    question: "What is the purpose of the require() function in Node.js?",
+    answer:
+      "require() is used to import modules, JSON, and local files into a Node.js application.",
+  },
+  {
+    question: "What is the event emitter in Node.js?",
+    answer:
+      "The event emitter is a pattern in Node.js that allows objects to emit named events and have listeners respond to those events.",
+  },
+  {
+    question:
+      "What is the difference between process.nextTick() and setImmediate() in Node.js?",
+    answer:
+      "process.nextTick() schedules a callback to be invoked in the same phase of the event loop, while setImmediate() schedules a callback for the next iteration of the event loop.",
+  },
+  {
+    question: "What is the purpose of the Buffer class in Node.js?",
+    answer:
+      "The Buffer class is used to handle binary data directly in Node.js.",
+  },
+  {
+    question: "What is the purpose of the fs module in Node.js?",
+    answer:
+      "The fs (File System) module provides an API for interacting with the file system in a manner closely modeled around standard POSIX functions.",
+  },
+  {
+    question: "What is the purpose of the path module in Node.js?",
+    answer:
+      "The path module provides utilities for working with file and directory paths.",
+  },
+  {
+    question: "What is the purpose of the os module in Node.js?",
+    answer:
+      "The os module provides operating system-related utility methods and properties.",
+  },
+  {
+    question: "What is the purpose of the http module in Node.js?",
+    answer:
+      "The http module allows Node.js to transfer data over the Hyper Text Transfer Protocol (HTTP).",
+  },
+  {
+    question:
+      "What is the difference between synchronous and asynchronous methods in Node.js?",
+    answer:
+      "Synchronous methods block the execution of code until they complete, while asynchronous methods allow other code to run while they complete.",
+  },
+  {
+    question: "What is middleware in Express.js?",
+    answer:
+      "Middleware are functions that have access to the request and response objects and can modify them or end the request-response cycle.",
+  },
+  {
+    question:
+      "What is the purpose of the next() function in Express.js middleware?",
+    answer:
+      "The next() function passes control to the next middleware function in the stack.",
+  },
+  {
+    question: "What is CORS and how do you enable it in Express.js?",
+    answer:
+      "CORS (Cross-Origin Resource Sharing) is a mechanism to allow or restrict requested resources on a web server depending on where the HTTP request was initiated. You can enable it using the cors middleware.",
+  },
+  {
+    question: "What is the difference between PUT and PATCH HTTP methods?",
+    answer:
+      "PUT replaces the entire resource with the new data, while PATCH updates only the specified fields of a resource.",
+  },
+  {
+    question: "What is the purpose of the fetch API in JavaScript?",
+    answer:
+      "The fetch API is used to make network requests similar to XMLHttpRequest but with a more powerful and flexible feature set.",
+  },
+  {
+    question: "What is the difference between fetch and XMLHttpRequest?",
+    answer:
+      "fetch returns Promises and has a simpler, cleaner API, while XMLHttpRequest uses callbacks and is more complex to use.",
+  },
+  {
+    question: "What is the purpose of the async attribute in script tags?",
+    answer:
+      "The async attribute allows the script to be downloaded in parallel to parsing the page, and will execute as soon as it is available.",
+  },
+  {
+    question: "What is the purpose of the defer attribute in script tags?",
+    answer:
+      "The defer attribute downloads the script during HTML parsing and executes it after the parsing is complete.",
+  },
+  {
+    question:
+      "What is the difference between window.onload and DOMContentLoaded?",
+    answer:
+      "window.onload fires when the whole page has loaded, including all dependent resources, while DOMContentLoaded fires when the DOM is fully loaded, without waiting for stylesheets, images, and subframes to finish loading.",
+  },
+  {
+    question: "What is the purpose of the history API in JavaScript?",
+    answer:
+      "The history API allows manipulation of the browser session history, including pushState, replaceState, and popstate events.",
+  },
+  {
+    question: "What is the difference between sessionStorage and localStorage?",
+    answer:
+      "sessionStorage stores data for one session and is cleared when the browser tab is closed, while localStorage persists data even after the browser is closed.",
+  },
+  {
+    question: "What is the purpose of the navigator object in JavaScript?",
+    answer:
+      "The navigator object contains information about the browser and the user's environment.",
+  },
+  {
+    question: "What is the difference between innerHTML and outerHTML?",
+    answer:
+      "innerHTML gets or sets the HTML markup contained within the element, while outerHTML gets or sets the HTML markup of the element itself, including its descendants.",
+  },
+  {
+    question: "What is the purpose of the screen object in JavaScript?",
+    answer:
+      "The screen object contains information about the user's screen, such as width, height, and color depth.",
+  },
+  {
+    question:
+      "What is the difference between encodeURI and encodeURIComponent?",
+    answer:
+      "encodeURI is used to encode a complete URI, while encodeURIComponent is used to encode a URI component.",
+  },
+  {
+    question:
+      "What is the purpose of the decodeURI and decodeURIComponent functions?",
+    answer:
+      "decodeURI decodes a complete URI, while decodeURIComponent decodes a URI component.",
+  },
+  {
+    question: "What is the difference between escape() and encodeURI()?",
+    answer:
+      "escape() is an older function for encoding strings, but encodeURI() and encodeURIComponent() are preferred for encoding URIs.",
+  },
+  {
+    question: "What is the purpose of the btoa() and atob() functions?",
+    answer:
+      "btoa() encodes a string in base-64, and atob() decodes a base-64 encoded string.",
+  },
+  {
+    question:
+      "What is the difference between alert(), confirm(), and prompt()?",
+    answer:
+      "alert() displays a message, confirm() displays a message and waits for the user to accept or cancel, and prompt() displays a message and waits for the user to input text.",
+  },
+  {
+    question: "What is the purpose of the setImmediate() function?",
+    answer:
+      "setImmediate() is used to execute a single callback after the current event loop cycle in Node.js.",
+  },
+  {
+    question:
+      "What is the difference between process.env and process.argv in Node.js?",
+    answer:
+      "process.env contains environment variables, while process.argv contains command-line arguments passed to the Node.js process.",
+  },
+  {
+    question: "What is the purpose of the cluster module in Node.js?",
+    answer:
+      "The cluster module allows you to create child processes that share server ports, enabling load balancing over multiple CPU cores.",
+  },
+  {
+    question: "What is the difference between spawn and fork in Node.js?",
+    answer:
+      "spawn launches a new process with a given command, while fork is a special case of spawn to create new Node.js processes.",
+  },
+  {
+    question: "What is the purpose of the crypto module in Node.js?",
+    answer:
+      "The crypto module provides cryptographic functionality including a set of wrappers for OpenSSL's hash, HMAC, cipher, decipher, sign, and verify functions.",
+  },
+  {
+    question: "What is the purpose of the util module in Node.js?",
+    answer:
+      "The util module provides utility functions that are helpful for developers, such as util.promisify and util.inherits.",
+  },
+  {
+    question:
+      "What is the difference between process.exit() and process.kill() in Node.js?",
+    answer:
+      "process.exit() ends the process with a specified exit code, while process.kill() sends a signal to a process, which can be used to terminate it.",
+  },
+  {
+    question: "What is the purpose of the events module in Node.js?",
+    answer:
+      "The events module provides the EventEmitter class, which is used to handle events in Node.js.",
+  },
+  {
+    question:
+      "What is the difference between synchronous and asynchronous exceptions in Node.js?",
+    answer:
+      "Synchronous exceptions are thrown and can be caught using try/catch, while asynchronous exceptions occur in callbacks and must be handled differently.",
+  },
+  {
+    question: "What is the purpose of the domain module in Node.js?",
+    answer:
+      "The domain module provides a way to handle multiple different I/O operations as a single group for error handling.",
+  },
+  {
+    question: "What is the purpose of the readline module in Node.js?",
+    answer:
+      "The readline module provides an interface for reading data from a Readable stream (such as process.stdin) one line at a time.",
+  },
+  {
+    question: "What is the purpose of the zlib module in Node.js?",
+    answer:
+      "The zlib module provides compression functionality, including gzip and deflate.",
+  },
+  {
+    question:
+      "What is the difference between __dirname and __filename in Node.js?",
+    answer:
+      "__dirname is the directory name of the current module, while __filename is the file name of the current module.",
+  },
+  {
+    question:
+      "What is the purpose of the require.resolve() function in Node.js?",
+    answer:
+      "require.resolve() returns the resolved filename for a given module, as if it were required.",
+  },
+  {
+    question: "What is the purpose of the global object in Node.js?",
+    answer:
+      "The global object in Node.js is global, which provides variables and functions available anywhere in your Node.js code.",
+  },
+  {
+    question:
+      "What is the difference between synchronous and asynchronous iterators in JavaScript?",
+    answer:
+      "Synchronous iterators use the next() method to return values one at a time, while asynchronous iterators use next() that returns a promise, allowing for asynchronous data streams.",
+  },
+  {
+    question: "What is the purpose of the Symbol type in JavaScript?",
+    answer:
+      "Symbol is a primitive data type used to create unique identifiers for object properties.",
+  },
+  {
+    question: "What is the purpose of the ArrayBuffer object in JavaScript?",
+    answer:
+      "ArrayBuffer is a generic, fixed-length binary data buffer. It is used to represent a generic, fixed-length raw binary data buffer and is used with typed arrays.",
+  },
+  {
+    question:
+      "What is the difference between Array.prototype.find and Array.prototype.filter?",
+    answer:
+      "find returns the first element that satisfies the condition, while filter returns all elements that satisfy the condition as a new array.",
+  },
+  {
+    question: "What is the purpose of the Intl object in JavaScript?",
+    answer:
+      "The Intl object is the namespace for the ECMAScript Internationalization API, which provides language sensitive string comparison, number formatting, and date and time formatting.",
+  },
+  {
+    question: "What is the purpose of the DataView object in JavaScript?",
+    answer:
+      "DataView provides a low-level interface for reading and writing multiple number types in an ArrayBuffer irrespective of the platform's endianness.",
+  },
+  {
+    question:
+      "What is the purpose of the SharedArrayBuffer object in JavaScript?",
+    answer:
+      "SharedArrayBuffer is used to create a generic, fixed-length raw binary data buffer that can be used to create views on shared memory, allowing for memory to be shared between workers.",
+  },
+  {
+    question: "What is the purpose of the Atomics object in JavaScript?",
+    answer:
+      "The Atomics object provides atomic operations as static methods. They are used with SharedArrayBuffer to coordinate memory sharing between threads.",
+  },
 ];
 
 let currentCard = 0;
