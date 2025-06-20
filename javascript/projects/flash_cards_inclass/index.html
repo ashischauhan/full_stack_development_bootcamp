@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flash Cards</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <script src="app.js"></script>
+  </head>
+  <body class="flex h-screen justify-center items-center">
+    <div class="w-[500px] flex flex-col gap-[5px]">
+      <h2 class="font-bold text-xl">Flash Cards</h2>
+      <div class="border rounded-[12px] p-1 border-gray-500 flex gap-1">
+        <div class="bg-gray-500 w-[25%] rounded-xl">&nbsp;</div>
+        <span class="text-sm grow-1">25%</span>
+        <span class="test-sm">5 of 20</span>
+      </div>
+      <div
+        class="border rounded-[12px] p-1 border-gray-500 flex flex-col gap-1"
+      >
+        <div
+          class="bg-gray-300 rounded-[12px] h-[250px] flex flex-col justify-center p-4"
+        >
+          <h3 class="text-3xl text-center hidden">
+            What is the difference between var, let and const?
+          </h3>
+          <p class="text-xl text-center">
+            The main differences between var, let, and const in JavaScript
+            relate to scope, hoisting, and reassignment. var is function-scoped
+            and hoisted, while let and const are block-scoped and not fully
+            hoisted. const also enforces that a variable cannot be reassigned
+            after initialization.
+          </p>
+        </div>
+        <div class="bg-gray-300 rounded-[12px] p-2 flex justify-between">
+          <button class="text-sm cursor-pointer">< Previous</button>
+          <button class="text-sm font-bold cursor-pointer">Show Answer</button>
+          <button class="text-sm cursor-pointer">Next ></button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
