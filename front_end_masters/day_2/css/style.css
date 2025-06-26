@@ -1,0 +1,60 @@
+/* my first css */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #D9CBBA;
+}
+img {
+    border: 10px solid green;
+}
+h1 {
+    border: 5px dotted red;
+    background-color: rgb(45, 45, 106);
+    color: white;
+}
+    
+blockquote {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 3rem;
+    font-style: italic;
+    text-align: center;
+}
+h2 ,h3 {
+    border: 5px dotted red;
+    color: green;
+}
+
+ol {
+    color: #16C443;
+}
+#myid {
+    color: #C317B5;
+    font-weight: bold;
+}
+cite{
+    font-size: 1rem;
+}
+.bigbold {
+    font-weight: bold;
+    font-size: 2rem;
+    color: darkblue;
+    font-style: italic;
+}
+a:link {
+    font-weight: bold;
+    text-decoration: none;
+    color: blue;
+}
+a:visited {
+    color: blue;
+    font-size: 2rem;
+    font-weight: normal;
+}
+a:hover {
+    color: orange;
+    text-decoration: underline;
+    background-color: black;
+}
+a.harvard:link {
+    color: maroon;
+}
