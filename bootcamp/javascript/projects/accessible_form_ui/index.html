@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accessible Form UI</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="form-container">
+      <h1>Register</h1>
+      <form aria-labelledby="form-title" autocomplete="off">
+        <div class="form-group">
+          <label for="fullname">Full Name</label>
+          <input
+            type="text"
+            id="fullname"
+            name="fullname"
+            required
+            aria-required="true"
+            autocomplete="off"
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            aria-required="true"
+            autocomplete="off"
+          />
+        </div>
+        <div class="form-group password-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            aria-required="true"
+            autocomplete="off"
+          />
+          <button
+            type="button"
+            class="toggle-password"
+            aria-label="Show password"
+            tabindex="0"
+          >
+            👁️
+          </button>
+        </div>
+        <div class="form-group">
+          <label for="confirm-password">Confirm Password</label>
+          <input
+            type="password"
+            id="confirm-password"
+            name="confirm-password"
+            required
+            aria-required="true"
+            autocomplete="off"
+          />
+        </div>
+        <div class="progress-section">
+          <label for="progress-bar">Form Completeness</label>
+          <progress
+            id="progress-bar"
+            value="0"
+            max="100"
+            aria-valuenow="0"
+            aria-valuemax="100"
+            aria-valuemin="0"
+          ></progress>
+          <span class="progress-text">0% Complete</span>
+        </div>
+        <ul class="requirements-checklist" aria-label="Form requirements">
+          <li><span class="checkbox"></span> Full name is filled</li>
+          <li><span class="checkbox"></span> Valid email address</li>
+          <li>
+            <span class="checkbox"></span> Password is at least 8 characters
+          </li>
+          <li><span class="checkbox"></span> Password contains a number</li>
+          <li><span class="checkbox"></span> Passwords match</li>
+        </ul>
+        <button type="submit" class="submit-btn" disabled>Register</button>
+      </form>
+    </main>
+  </body>
+</html>
