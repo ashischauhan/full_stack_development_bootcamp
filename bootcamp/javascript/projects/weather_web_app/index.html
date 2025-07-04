@@ -4,19 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Web App</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="app.js" defer></script>
   </head>
-  <body>
-    <h1>Weather Web App</h1>
-    <div>
-      <input
-        type="text"
-        id="location"
-        name="location"
-        placeholder="Enter a location"
-        required
-      />
+  <body class="flex justify-center items-center h-screen bg-gray-100">
+    <div
+      class="bg-white max-w-2xl w-full rounded-xl shadow-lg p-6 flex flex-col gap-4"
+    >
+      <h1 class="flex justify-center">Weather Web App</h1>
+      <div>
+        <input
+          class="w-full px-4 py-3 border border-gray-300 rounded-3xl capitalize"
+          type="text"
+          id="location"
+          name="location"
+          placeholder="Enter a location"
+          required
+        />
+      </div>
+      <div id="weather-data" class="flex flex-col gap-2"></div>
     </div>
-    <div id="weather-data"></div>
   </body>
 </html>

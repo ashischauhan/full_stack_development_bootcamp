@@ -52,8 +52,8 @@ class WeatherApp {
   displayWeatherData(weatherData) {
     const weatherContainer = document.getElementById("weather-data");
     const weatherHtml = `
-    <h2>Weather Data for ${this.locationAddress}</h2>
-    <p>Temperature: ${weatherData.temperature} °F</p>
+    <h2 class="text-3xl text-bold">Weather Data for <span class="capitalize">${this.locationAddress}</span></h2>
+    <p class="text-7xl font bold">${weatherData.temperature} °F</p>
     <p>Wind Speed: ${weatherData.windSpeed} km/h</p>
     <p>Likelyhood of Rain: ${weatherData.likelyhoodOfRain} </p>
     <p>General Weather: ${weatherData.generalWeather}</p>
