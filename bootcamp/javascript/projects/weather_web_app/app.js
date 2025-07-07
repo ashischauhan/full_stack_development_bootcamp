@@ -38,9 +38,15 @@ class WeatherApp {
   }
 
   filterWeatherData(data) {
-    const temperature = data.currentConditions.temp;
+    // Convert temperature from Fahrenheit to Celsius
+    const temperatureF = data.currentConditions.temp;
+    const temperature = ((temperatureF - 32) * 5) / 9;
     const windSpeed = data.currentConditions.windspeed;
-    const likelyhoodOfRain = data.currentConditions.perciptype || "None";
+    // Fix: Use correct property name and handle array
+    let likelyhoodOfRain = "None";
+    if (Array.isArray(data.currentConditions.preciptype) && data.currentConditions.preciptype.length > 0) {
+      likelyhoodOfRain = data.currentConditions.preciptype.join(", ");
+    }
     const generalWeather = data.currentConditions.conditions;
     return {
       temperature,
@@ -53,7 +59,7 @@ class WeatherApp {
     const weatherContainer = document.getElementById("weather-data");
     const weatherHtml = `
     <h2 class="text-3xl text-bold">Weather Data for <span class="capitalize">${this.locationAddress}</span></h2>
-    <p class="text-7xl font bold">${weatherData.temperature} °F</p>
+    <p class="text-7xl font bold">${weatherData.temperature.toFixed(1)} °C</p>
     <p>Wind Speed: ${weatherData.windSpeed} km/h</p>
     <p>Likelyhood of Rain: ${weatherData.likelyhoodOfRain} </p>
     <p>General Weather: ${weatherData.generalWeather}</p>

@@ -7,14 +7,47 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="app.js" defer></script>
   </head>
-  <body class="flex justify-center items-center h-screen bg-gray-100">
+  <body
+    class="flex justify-center items-center h-screen bg-gradient-to-br from-blue-100 via-cyan-100 to-indigo-200"
+  >
     <div
-      class="bg-white max-w-2xl w-full rounded-xl shadow-lg p-6 flex flex-col gap-4"
+      class="bg-white/80 backdrop-blur-md w-full max-w-lg md:max-w-xl lg:max-w-2xl rounded-3xl shadow-2xl p-8 flex flex-col gap-6 border border-indigo-200 scale-95 md:scale-100 animate-fade-in-up"
+      style="min-width: 320px; min-height: 420px"
     >
-      <h1 class="flex justify-center">Weather Web App</h1>
+      <h1
+        class="flex justify-center text-4xl font-bold text-indigo-700 tracking-wide mb-2 animate-fade-in"
+      >
+        Weather Web App
+      </h1>
+      <style>
+        @keyframes fade-in-up {
+          0% {
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+        .animate-fade-in-up {
+          animation: fade-in-up 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+        }
+        @keyframes fade-in {
+          0% {
+            opacity: 0;
+          }
+          100% {
+            opacity: 1;
+          }
+        }
+        .animate-fade-in {
+          animation: fade-in 1.2s ease both;
+        }
+      </style>
       <div>
         <input
-          class="w-full px-4 py-3 border border-gray-300 rounded-3xl capitalize"
+          class="w-full px-5 py-3 border-2 border-cyan-300 focus:border-indigo-400 outline-none rounded-3xl capitalize bg-white/70 text-lg text-gray-800 placeholder-gray-400 transition duration-200"
           type="text"
           id="location"
           name="location"
@@ -22,7 +55,7 @@
           required
         />
       </div>
-      <div id="weather-data" class="flex flex-col gap-2"></div>
+      <div id="weather-data" class="flex flex-col gap-3 text-indigo-800"></div>
     </div>
   </body>
 </html>
