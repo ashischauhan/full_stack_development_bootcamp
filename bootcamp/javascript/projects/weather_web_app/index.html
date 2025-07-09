@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Web App</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="app.js" defer></script>
   </head>
   <body
@@ -45,7 +46,7 @@
           animation: fade-in 1.2s ease both;
         }
       </style>
-      <div>
+      <div class="flex gap-2 items-center">
         <input
           class="w-full px-5 py-3 border-2 border-cyan-300 focus:border-indigo-400 outline-none rounded-3xl capitalize bg-white/70 text-lg text-gray-800 placeholder-gray-400 transition duration-200"
           type="text"
@@ -54,8 +55,69 @@
           placeholder="Enter a location"
           required
         />
+        <button
+          id="geo-btn"
+          title="Get weather for your location"
+          class="px-4 py-3 rounded-3xl bg-indigo-500 hover:bg-indigo-600 text-white font-semibold shadow-md transition duration-200 animate-fade-in-up"
+        >
+          <!-- Location icon -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6 inline"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 21c-4.418 0-8-5.373-8-9.5C4 6.462 7.582 3 12 3s8 3.462 8 8.5c0 4.127-3.582 9.5-8 9.5zm0-7.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z"
+            />
+          </svg>
+        </button>
+        <!-- Removed the red X button as requested -->
+        <button
+          id="toggle-unit"
+          title="Toggle °C/°F"
+          class="px-4 py-3 rounded-3xl bg-cyan-500 hover:bg-cyan-600 text-white font-semibold shadow-md transition duration-200 animate-fade-in-up"
+        >
+          <span id="unit-label">°C</span>/<span>°F</span>
+        </button>
       </div>
-      <div id="weather-data" class="flex flex-col gap-3 text-indigo-800"></div>
+      <div
+        id="weather-data"
+        class="flex flex-col gap-3 text-indigo-800 items-center"
+      ></div>
+      <!-- Lottie player CDN -->
+
+      <div id="search-history-container" class="mt-4">
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="text-lg font-semibold text-indigo-700">Search History</h3>
+          <button
+            id="clear-history-btn"
+            title="Clear search history"
+            class="px-3 py-1 rounded-xl bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium shadow-sm transition duration-200 text-sm flex items-center gap-1"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              class="w-4 h-4 inline"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+            Clear
+          </button>
+        </div>
+        <ul id="search-history" class="flex flex-wrap gap-2"></ul>
+      </div>
     </div>
   </body>
 </html>
