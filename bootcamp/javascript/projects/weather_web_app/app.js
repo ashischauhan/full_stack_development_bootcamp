@@ -48,6 +48,16 @@ class WeatherApp {
   clearSearchHistory() {
     localStorage.removeItem(this.historyKey);
     this.renderSearchHistory();
+    // Clear weather data display as well
+    const weatherContainer = document.getElementById("weather-data");
+    if (weatherContainer) {
+      weatherContainer.innerHTML = "";
+    }
+    // Clear the input field as well
+    const locationInput = document.getElementById("location");
+    if (locationInput) {
+      locationInput.value = "";
+    }
   }
 
   async handleGeoLocation() {
@@ -206,49 +216,51 @@ class WeatherApp {
     // See https://www.visualcrossing.com/resources/documentation/weather-api/understanding-weather-condition-codes/ for possible conditions
     let svgIcon = "";
     const weather = (weatherData.generalWeather || "").toLowerCase();
+    const iconSize = "180px"; // Increased size
+
     if (
       weather.includes("thunder") ||
       weather.includes("storm") ||
       weather.includes("lightning")
     ) {
-      svgIcon = `<img src="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/thunder.svg" alt="Thunderstorm" style="width:100px;height:100px;" />`;
+      svgIcon = `<img src="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/thunder.svg" alt="Thunderstorm" style="width:${iconSize};height:${iconSize};" /> `;
     } else if (
       weather.includes("snow") ||
       weather.includes("sleet") ||
       weather.includes("blizzard")
     ) {
-      svgIcon = `<img src="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/snowy-1.svg" alt="Snowy" style="width:100px;height:100px;" />`;
+      svgIcon = `<img src="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/snowy-1.svg" alt="Snowy" style="width:${iconSize};height:${iconSize};" />`;
     } else if (
       weather.includes("rain") ||
       weather.includes("drizzle") ||
       weather.includes("shower")
     ) {
-      svgIcon = `<img src="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/rainy-1.svg" alt="Rainy" style="width:100px;height:100px;" />`;
+      svgIcon = `<img src="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/rainy-1.svg" alt="Rainy" style="width:${iconSize};height:${iconSize};" />`;
     } else if (
       weather.includes("fog") ||
       weather.includes("mist") ||
       weather.includes("haze") ||
       weather.includes("smoke")
     ) {
-      svgIcon = `<img src="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/fog.svg" alt="Foggy" style="width:100px;height:100px;" />`;
+      svgIcon = `<img src="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/fog.svg" alt="Foggy" style="width:${iconSize};height:${iconSize};" />`;
     } else if (weather.includes("cloud") || weather.includes("overcast")) {
       // Try to distinguish between partly cloudy and fully cloudy
       if (weather.includes("partly") || weather.includes("few")) {
-        svgIcon = `<img src="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/cloudy-day-1.svg" alt="Partly Cloudy" style="width:100px;height:100px;" />`;
+        svgIcon = `<img src="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/cloudy-day-1.svg" alt="Partly Cloudy" style="width:${iconSize};height:${iconSize};" />`;
       } else {
-        svgIcon = `<img src="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/cloudy.svg" alt="Cloudy" style="width:100px;height:100px;" />`;
+        svgIcon = `<img src="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/cloudy.svg" alt="Cloudy" style="width:${iconSize};height:${iconSize};" />`;
       }
     } else if (
       weather.includes("clear") ||
       weather.includes("sun") ||
       weather.includes("fair")
     ) {
-      svgIcon = `<img src="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/day.svg" alt="Sunny" style="width:100px;height:100px;" />`;
+      svgIcon = `<img src="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/day.svg" alt="Sunny" style="width:${iconSize};height:${iconSize};" />`;
     } else if (weather.includes("night")) {
-      svgIcon = `<img src="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/night.svg" alt="Night" style="width:100px;height:100px;" />`;
+      svgIcon = `<img src="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/night.svg" alt="Night" style="width:${iconSize};height:${iconSize};" />`;
     } else {
       // Fallback: show a question mark or default sunny
-      svgIcon = `<img src="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/day.svg" alt="Weather" style="width:100px;height:100px;" />`;
+      svgIcon = `<img src="https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/day.svg" alt="Weather" style="width:${iconSize};height:${iconSize};" />`;
     }
 
     const iconHtml = svgIcon;
