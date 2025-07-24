@@ -12,6 +12,9 @@ class StoryManager {
     this.currentImageIndex = 0;
     this.storyTimer = null;
     this.STORY_DURATION = 5000; // 5 seconds per image
+    this.isPaused = false;
+    this.pausedTime = 0;
+    this.startTime = 0;
 
     this.init();
   }
@@ -61,14 +64,12 @@ class StoryManager {
       this.nextStory();
     });
 
-    // Story viewer click to next
-    document.getElementById("story-viewer").addEventListener("click", (e) => {
-      if (e.target.id === "story-image" || e.target.id === "story-content") {
-        this.nextImage();
-      }
-    });
+    // Story image interaction handling
+    this.setupStoryImageInteraction();
 
     // Keyboard navigation
+    let spaceKeyDown = false;
+
     document.addEventListener("keydown", (e) => {
       const viewer = document.getElementById("story-viewer");
       if (!viewer.classList.contains("hidden")) {
@@ -77,7 +78,21 @@ class StoryManager {
         if (e.key === "ArrowRight") this.nextStory();
         if (e.key === " ") {
           e.preventDefault();
-          this.nextImage();
+          if (!spaceKeyDown) {
+            spaceKeyDown = true;
+            this.pauseStory();
+          }
+        }
+      }
+    });
+
+    document.addEventListener("keyup", (e) => {
+      const viewer = document.getElementById("story-viewer");
+      if (!viewer.classList.contains("hidden")) {
+        if (e.key === " ") {
+          e.preventDefault();
+          spaceKeyDown = false;
+          this.resumeStory();
         }
       }
     });
@@ -86,36 +101,148 @@ class StoryManager {
     this.setupTouchGestures();
   }
 
+  setupStoryImageInteraction() {
+    let isMouseDown = false;
+    let mouseDownTime = 0;
+    let isHolding = false;
+
+    const storyImage = document.getElementById("story-image");
+
+    // Mouse events
+    storyImage.addEventListener("mousedown", (e) => {
+      e.preventDefault();
+      isMouseDown = true;
+      isHolding = false;
+      mouseDownTime = Date.now();
+
+      // Start pause after a short delay to distinguish from quick clicks
+      setTimeout(() => {
+        if (isMouseDown) {
+          isHolding = true;
+          this.pauseStory();
+        }
+      }, 150);
+    });
+
+    storyImage.addEventListener("mouseup", (e) => {
+      e.preventDefault();
+      const holdDuration = Date.now() - mouseDownTime;
+      isMouseDown = false;
+
+      if (isHolding) {
+        // If story was paused due to holding, resume it
+        this.resumeStory();
+        isHolding = false;
+      } else if (holdDuration < 150) {
+        // If it was a quick click (less than 150ms), treat as next story
+        this.nextImage();
+      }
+    });
+
+    storyImage.addEventListener("mouseleave", () => {
+      isMouseDown = false;
+      if (isHolding) {
+        this.resumeStory();
+        isHolding = false;
+      }
+    });
+
+    // Touch events for mobile
+    let touchStartTime = 0;
+    let isTouchDown = false;
+    let isTouchHolding = false;
+
+    storyImage.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      isTouchDown = true;
+      isTouchHolding = false;
+      touchStartTime = Date.now();
+
+      // Start pause after a short delay
+      setTimeout(() => {
+        if (isTouchDown) {
+          isTouchHolding = true;
+          this.pauseStory();
+        }
+      }, 150);
+    });
+
+    storyImage.addEventListener("touchend", (e) => {
+      e.preventDefault();
+      const holdDuration = Date.now() - touchStartTime;
+      isTouchDown = false;
+
+      if (isTouchHolding) {
+        // If story was paused due to holding, resume it
+        this.resumeStory();
+        isTouchHolding = false;
+      } else if (holdDuration < 150) {
+        // If it was a quick tap, treat as next story
+        this.nextImage();
+      }
+    });
+
+    storyImage.addEventListener("touchcancel", () => {
+      isTouchDown = false;
+      if (isTouchHolding) {
+        this.resumeStory();
+        isTouchHolding = false;
+      }
+    });
+
+    // Handle clicks on story viewer background (not the image)
+    document.getElementById("story-viewer").addEventListener("click", (e) => {
+      if (e.target.id === "story-viewer" || e.target.id === "story-content") {
+        // Only advance if clicking on background, not the image
+        if (e.target.id !== "story-image") {
+          this.nextImage();
+        }
+      }
+    });
+  }
+
   setupTouchGestures() {
     let startX = 0;
     let startY = 0;
+    let touchStartTime = 0;
 
     document
       .getElementById("story-viewer")
       .addEventListener("touchstart", (e) => {
-        startX = e.touches[0].clientX;
-        startY = e.touches[0].clientY;
+        // Only handle touch if not on the image (to avoid conflict with pause functionality)
+        if (e.target.id !== "story-image") {
+          startX = e.touches[0].clientX;
+          startY = e.touches[0].clientY;
+          touchStartTime = Date.now();
+        }
       });
 
     document
       .getElementById("story-viewer")
       .addEventListener("touchend", (e) => {
-        const endX = e.changedTouches[0].clientX;
-        const endY = e.changedTouches[0].clientY;
-        const diffX = startX - endX;
-        const diffY = startY - endY;
+        // Only handle touch if not on the image
+        if (e.target.id !== "story-image") {
+          const endX = e.changedTouches[0].clientX;
+          const endY = e.changedTouches[0].clientY;
+          const diffX = startX - endX;
+          const diffY = startY - endY;
+          const touchDuration = Date.now() - touchStartTime;
 
-        // Horizontal swipe
-        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
-          if (diffX > 0) {
-            this.nextStory();
-          } else {
-            this.previousStory();
+          // Only process swipes that are quick (not long holds)
+          if (touchDuration < 500) {
+            // Horizontal swipe
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+              if (diffX > 0) {
+                this.nextStory();
+              } else {
+                this.previousStory();
+              }
+            }
+            // Vertical swipe down to close
+            else if (diffY < -100) {
+              this.closeStoryViewer();
+            }
           }
-        }
-        // Vertical swipe down to close
-        else if (diffY < -100) {
-          this.closeStoryViewer();
         }
       });
   }
@@ -374,11 +501,67 @@ class StoryManager {
   }
 
   startStoryTimer() {
-    this.clearStoryTimer();
+    this.resetStoryTimer();
+    this.startTime = Date.now();
 
     this.storyTimer = setTimeout(() => {
       this.nextStory();
     }, this.STORY_DURATION);
+  }
+
+  pauseStory() {
+    if (this.isPaused || !this.storyTimer) return;
+
+    this.isPaused = true;
+    this.pausedTime = Date.now();
+
+    // Clear the current timer (but keep timing variables)
+    this.clearStoryTimer();
+
+    // Pause the progress bar animation
+    const progressFill = document.querySelector(".progress-fill");
+    if (progressFill) {
+      const computedStyle = window.getComputedStyle(progressFill);
+      const currentWidth = computedStyle.width;
+      progressFill.style.width = currentWidth;
+      progressFill.style.transition = "none";
+    }
+
+    console.log("Story paused");
+  }
+
+  resumeStory() {
+    if (!this.isPaused) return;
+
+    const elapsed = this.pausedTime - this.startTime;
+    const remaining = Math.max(0, this.STORY_DURATION - elapsed);
+
+    this.isPaused = false;
+    this.startTime = Date.now() - elapsed; // Adjust start time to account for elapsed time
+
+    // Resume the progress bar animation
+    const progressFill = document.querySelector(".progress-fill");
+    if (progressFill && remaining > 0) {
+      // Get current width percentage
+      const currentWidth = progressFill.style.width;
+      const currentPercent = currentWidth
+        ? parseFloat(currentWidth)
+        : (elapsed / this.STORY_DURATION) * 100;
+
+      // Resume animation from current position
+      progressFill.style.transition = `width ${remaining}ms linear`;
+      progressFill.style.width = "100%";
+
+      // Set new timer for remaining time
+      this.storyTimer = setTimeout(() => {
+        this.nextStory();
+      }, remaining);
+    } else {
+      // If no time remaining, go to next story
+      this.nextStory();
+    }
+
+    console.log("Story resumed, elapsed:", elapsed, "remaining:", remaining);
   }
 
   clearStoryTimer() {
@@ -386,6 +569,13 @@ class StoryManager {
       clearTimeout(this.storyTimer);
       this.storyTimer = null;
     }
+  }
+
+  resetStoryTimer() {
+    this.clearStoryTimer();
+    this.isPaused = false;
+    this.pausedTime = 0;
+    this.startTime = 0;
   }
 
   nextStory() {
@@ -415,7 +605,7 @@ class StoryManager {
     const viewer = document.getElementById("story-viewer");
     viewer.classList.add("hidden");
     viewer.classList.remove("flex");
-    this.clearStoryTimer();
+    this.resetStoryTimer();
   }
 }
 
