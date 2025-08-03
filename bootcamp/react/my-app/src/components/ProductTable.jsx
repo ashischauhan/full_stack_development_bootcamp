@@ -27,7 +27,7 @@ export default function ProductTable(props) {
                 .filter((product) => product.category === category)
                 .map((product, index) => (
                   <ProductRow
-                    key={index}
+                    key={product.name + index}
                     name={product.name}
                     price={product.price}
                     stocked={product.stocked}
