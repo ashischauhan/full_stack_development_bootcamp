@@ -8,7 +8,7 @@ export default function ScientistItem({ scientist }) {
     setVisitCount(visitCount + 1);
   }
   function changeBackgroundColor() {
-    setBackgroundColor("#ff0000");
+    setBackgroundColor("lightblue");
   }
   function resetBackgroundColor() {
     setBackgroundColor("white");

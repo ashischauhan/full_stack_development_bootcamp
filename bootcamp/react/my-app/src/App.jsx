@@ -11,6 +11,9 @@ function App() {
         <li>
           <Link to="/thinking-in-react">Thinking in React</Link>
         </li>
+        <li>
+          <Link to="/portal">Portal</Link>
+        </li>
       </ul>
       <Counter />
       <ScientistList />
