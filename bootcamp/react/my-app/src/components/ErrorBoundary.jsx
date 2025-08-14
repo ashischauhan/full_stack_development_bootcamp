@@ -10,24 +10,20 @@ function ErrorFallback({ error, resetErrorBoundary }) {
   );
 }
 
-function App() {
+// Remove the App component from this file - it should be in App.jsx
+// Add a proper export for ErrorBoundary setup
+export default function AppErrorBoundary({ children }) {
   return (
-    <div>
-      <h1>My App</h1>
-      <ErrorBoundary
-        FallbackComponent={ErrorFallback}
-        onError={(error, errorInfo) => {
-          console.error("Error logged:", error, errorInfo);
-        }}
-      >
-        <MyComponent />
-      </ErrorBoundary>
-      <ErrorBoundary>
-        <BuggyComponent />
-      </ErrorBoundary>
-      <ErrorBoundary>
-        <AnotherComponent />
-      </ErrorBoundary>
-    </div>
+    <ErrorBoundary
+      FallbackComponent={ErrorFallback}
+      onError={(error, errorInfo) => {
+        console.error("Error logged:", error, errorInfo);
+      }}
+    >
+      {children}
+    </ErrorBoundary>
   );
 }
+
+// Export the ErrorFallback component as well if needed elsewhere
+export { ErrorFallback };
