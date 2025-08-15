@@ -11,6 +11,7 @@ import Portal from "./pages/Portal.jsx";
 
 import { ForgotPassword } from "./pages/ForgotPassword.jsx";
 import { SignIn } from "./pages/SignIn.jsx";
+import PhotoBrowser from "./pages/PhotoBrowser.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -24,6 +25,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
         </Route>
+        <Route path="/photo-browser" element={<PhotoBrowser />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

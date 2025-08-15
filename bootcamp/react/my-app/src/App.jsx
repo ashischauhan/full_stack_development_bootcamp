@@ -8,11 +8,11 @@ function App() {
   return (
     <>
       <ul>
-        <li>
+        <li className="flex  gap-2">
           <Link to="/thinking-in-react">Thinking in React</Link>
-        </li>
-        <li>
+
           <Link to="/portal">Portal</Link>
+          <Link to="/photo-browser">Photo Browser App</Link>
         </li>
       </ul>
       <Counter />
