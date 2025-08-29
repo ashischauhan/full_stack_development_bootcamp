@@ -1,35 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useForm } from "react-hook-form";
+import { questionAI } from "./actions/ai";
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [answer, setAnswer] = useState("");
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { isSubmitting },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    const answer = await questionAI(data.question);
+    console.log(answer);
+    setAnswer(answer);
+    setValue("question", "");
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      handleSubmit(onSubmit)();
+    }
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="w-full h-screen flex flex-col justify-center items-center">
+        {answer && (
+          <div
+            className="p-4 w-1/2"
+            dangerouslySetInnerHTML={{ __html: answer }}
+          ></div>
+        )}
+        <form onSubmit={handleSubmit(onSubmit)} className="w-1/2 max-auto ">
+          <textarea
+            onKeyDown={handleKeyDown}
+            {...register("question", { required: true })}
+            className="border border-white-500 shadow-md rounded-md w-full h-[100px] p-4 text-lg"
+            placeholder="What type of song would you like to create?"
+          ></textarea>
+        </form>
+        {isSubmitting && (
+          <div className="mt-4 text-white-500">Submitting...</div>
+        )}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
