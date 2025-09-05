@@ -9,11 +9,7 @@ import { dirname, join } from "path";
 // Import routes
 import authRoutes from "./routes/auth.js";
 import productRoutes from "./routes/products.js";
-<<<<<<< HEAD
 import categoryRoutes from "./routes/categories.js";
-=======
-import categoriesRoutes from "./routes/categories.js";
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
 import orderRoutes from "./routes/orders.js";
 import adminRoutes from "./routes/admin.js";
 import paymentRoutes from "./routes/payments.js";
@@ -84,11 +80,7 @@ app.get("/health", (req, res) => {
 // API routes
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
-<<<<<<< HEAD
 app.use("/api/categories", categoryRoutes);
-=======
-app.use("/api/categories", categoriesRoutes);
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
 app.use("/api/orders", orderRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/admin", authenticateToken, adminRoutes);

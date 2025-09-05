@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import { query as pgQuery } from '../config/database.js';
-import express from 'express';
-=======
 import { query as pgQuery } from "../config/database.js";
 import express from "express";
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
 
 const router = express.Router();
 
@@ -12,42 +7,25 @@ const router = express.Router();
 const generateSlug = (name) => {
   return name
     .toLowerCase()
-<<<<<<< HEAD
-    .replace(/[^a-z0-9\s-]/g, '') // Remove special characters
-    .replace(/\s+/g, '-') // Replace spaces with hyphens
-    .replace(/-+/g, '-') // Replace multiple hyphens with single
-    .trim('-'); // Remove leading/trailing hyphens
-=======
     .replace(/[^a-z0-9\s-]/g, "") // Remove special characters
     .replace(/\s+/g, "-") // Replace spaces with hyphens
     .replace(/-+/g, "-") // Replace multiple hyphens with single
     .trim("-"); // Remove leading/trailing hyphens
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
 };
 
 // Validation middleware
 const validateCategory = (req, res, next) => {
   const { name } = req.body;
 
-<<<<<<< HEAD
-  if (!name || typeof name !== 'string' || name.trim().length === 0) {
-    return res.status(400).json({
-      error: 'Name is required and must be a non-empty string',
-=======
   if (!name || typeof name !== "string" || name.trim().length === 0) {
     return res.status(400).json({
       error: "Name is required and must be a non-empty string",
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
     });
   }
 
   if (name.length > 100) {
     return res.status(400).json({
-<<<<<<< HEAD
-      error: 'Name must be 100 characters or less',
-=======
       error: "Name must be 100 characters or less",
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
     });
   }
 
@@ -55,25 +33,12 @@ const validateCategory = (req, res, next) => {
 };
 
 // GET /api/categories - Get all categories
-<<<<<<< HEAD
-router.get('/', async (req, res) => {
-=======
 router.get("/", async (req, res) => {
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
   try {
     const {
       page = 1,
       limit = 10,
       is_active,
-<<<<<<< HEAD
-      sort_by = 'sort_order',
-      sort_order = 'ASC',
-    } = req.query;
-
-    const offset = (page - 1) * limit;
-    let query = 'SELECT * FROM categories';
-    let countQuery = 'SELECT COUNT(*) FROM categories';
-=======
       sort_by = "sort_order",
       sort_order = "ASC",
     } = req.query;
@@ -81,23 +46,11 @@ router.get("/", async (req, res) => {
     const offset = (page - 1) * limit;
     let query = "SELECT * FROM categories";
     let countQuery = "SELECT COUNT(*) FROM categories";
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
     const queryParams = [];
     const countParams = [];
 
     // Add filtering
     if (is_active !== undefined) {
-<<<<<<< HEAD
-      query += ' WHERE is_active = $1';
-      countQuery += ' WHERE is_active = $1';
-      queryParams.push(is_active === 'true');
-      countParams.push(is_active === 'true');
-    }
-
-    // Add sorting
-    const validSortColumns = ['name', 'sort_order', 'created_at'];
-    const validSortOrders = ['ASC', 'DESC'];
-=======
       query += " WHERE is_active = $1";
       countQuery += " WHERE is_active = $1";
       queryParams.push(is_active === "true");
@@ -107,7 +60,6 @@ router.get("/", async (req, res) => {
     // Add sorting
     const validSortColumns = ["name", "sort_order", "created_at"];
     const validSortOrders = ["ASC", "DESC"];
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
 
     if (
       validSortColumns.includes(sort_by) &&
@@ -115,11 +67,7 @@ router.get("/", async (req, res) => {
     ) {
       query += ` ORDER BY ${sort_by} ${sort_order.toUpperCase()}`;
     } else {
-<<<<<<< HEAD
-      query += ' ORDER BY sort_order ASC';
-=======
       query += " ORDER BY sort_order ASC";
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
     }
 
     // Add pagination
@@ -146,22 +94,13 @@ router.get("/", async (req, res) => {
       },
     });
   } catch (error) {
-<<<<<<< HEAD
-    console.error('Error fetching categories:', error);
-    res.status(500).json({ error: 'Internal server error' });
-=======
     console.error("Error fetching categories:", error);
     res.status(500).json({ error: "Internal server error" });
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
   }
 });
 
 // GET /api/categories/:id - Get category by ID
-<<<<<<< HEAD
-router.get('/:id', async (req, res) => {
-=======
 router.get("/:id", async (req, res) => {
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
   try {
     const { id } = req.params;
 
@@ -169,83 +108,46 @@ router.get("/:id", async (req, res) => {
     const uuidRegex =
       /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
     if (!uuidRegex.test(id)) {
-<<<<<<< HEAD
-      return res.status(400).json({ error: 'Invalid category ID format' });
-    }
-
-    const result = await pgQuery('SELECT * FROM categories WHERE id = $1', [
-=======
       return res.status(400).json({ error: "Invalid category ID format" });
     }
 
     const result = await pgQuery("SELECT * FROM categories WHERE id = $1", [
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
       id,
     ]);
 
     if (result.rows.length === 0) {
-<<<<<<< HEAD
-      return res.status(404).json({ error: 'Category not found' });
-=======
       return res.status(404).json({ error: "Category not found" });
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
     }
 
     res.json({ data: result.rows[0] });
   } catch (error) {
-<<<<<<< HEAD
-    console.error('Error fetching category:', error);
-    res.status(500).json({ error: 'Internal server error' });
-=======
     console.error("Error fetching category:", error);
     res.status(500).json({ error: "Internal server error" });
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
   }
 });
 
 // GET /api/categories/slug/:slug - Get category by slug
-<<<<<<< HEAD
-router.get('/slug/:slug', async (req, res) => {
-  try {
-    const { slug } = req.params;
-
-    const result = await pgQuery('SELECT * FROM categories WHERE slug = $1', [
-=======
 router.get("/slug/:slug", async (req, res) => {
   try {
     const { slug } = req.params;
 
     const result = await pgQuery("SELECT * FROM categories WHERE slug = $1", [
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
       slug,
     ]);
 
     if (result.rows.length === 0) {
-<<<<<<< HEAD
-      return res.status(404).json({ error: 'Category not found' });
-=======
       return res.status(404).json({ error: "Category not found" });
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
     }
 
     res.json({ data: result.rows[0] });
   } catch (error) {
-<<<<<<< HEAD
-    console.error('Error fetching category by slug:', error);
-    res.status(500).json({ error: 'Internal server error' });
-=======
     console.error("Error fetching category by slug:", error);
     res.status(500).json({ error: "Internal server error" });
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
   }
 });
 
 // POST /api/categories - Create new category
-<<<<<<< HEAD
-router.post('/', validateCategory, async (req, res) => {
-=======
 router.post("/", validateCategory, async (req, res) => {
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
   try {
     const {
       name,
@@ -276,25 +178,6 @@ router.post("/", validateCategory, async (req, res) => {
     const result = await pgQuery(query, values);
 
     res.status(201).json({
-<<<<<<< HEAD
-      message: 'Category created successfully',
-      data: result.rows[0],
-    });
-  } catch (error) {
-    console.error('Error creating category:', error);
-
-    // Handle unique constraint violations
-    if (error.code === '23505') {
-      if (error.constraint === 'categories_name_key') {
-        return res.status(409).json({ error: 'Category name already exists' });
-      }
-      if (error.constraint === 'categories_slug_key') {
-        return res.status(409).json({ error: 'Category slug already exists' });
-      }
-    }
-
-    res.status(500).json({ error: 'Internal server error' });
-=======
       message: "Category created successfully",
       data: result.rows[0],
     });
@@ -312,16 +195,11 @@ router.post("/", validateCategory, async (req, res) => {
     }
 
     res.status(500).json({ error: "Internal server error" });
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
   }
 });
 
 // PUT /api/categories/:id - Update category
-<<<<<<< HEAD
-router.put('/:id', validateCategory, async (req, res) => {
-=======
 router.put("/:id", validateCategory, async (req, res) => {
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
   try {
     const { id } = req.params;
     const { name, description, image_url, is_active, sort_order } = req.body;
@@ -330,28 +208,16 @@ router.put("/:id", validateCategory, async (req, res) => {
     const uuidRegex =
       /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
     if (!uuidRegex.test(id)) {
-<<<<<<< HEAD
-      return res.status(400).json({ error: 'Invalid category ID format' });
-=======
       return res.status(400).json({ error: "Invalid category ID format" });
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
     }
 
     // Check if category exists
     const existingCategory = await pgQuery(
-<<<<<<< HEAD
-      'SELECT * FROM categories WHERE id = $1',
-      [id]
-    );
-    if (existingCategory.rows.length === 0) {
-      return res.status(404).json({ error: 'Category not found' });
-=======
       "SELECT * FROM categories WHERE id = $1",
       [id]
     );
     if (existingCategory.rows.length === 0) {
       return res.status(404).json({ error: "Category not found" });
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
     }
 
     // Generate new slug if name changed
@@ -379,25 +245,6 @@ router.put("/:id", validateCategory, async (req, res) => {
     const result = await pgQuery(query, values);
 
     res.json({
-<<<<<<< HEAD
-      message: 'Category updated successfully',
-      data: result.rows[0],
-    });
-  } catch (error) {
-    console.error('Error updating category:', error);
-
-    // Handle unique constraint violations
-    if (error.code === '23505') {
-      if (error.constraint === 'categories_name_key') {
-        return res.status(409).json({ error: 'Category name already exists' });
-      }
-      if (error.constraint === 'categories_slug_key') {
-        return res.status(409).json({ error: 'Category slug already exists' });
-      }
-    }
-
-    res.status(500).json({ error: 'Internal server error' });
-=======
       message: "Category updated successfully",
       data: result.rows[0],
     });
@@ -415,16 +262,11 @@ router.put("/:id", validateCategory, async (req, res) => {
     }
 
     res.status(500).json({ error: "Internal server error" });
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
   }
 });
 
 // PATCH /api/categories/:id - Partial update category
-<<<<<<< HEAD
-router.patch('/:id', async (req, res) => {
-=======
 router.patch("/:id", async (req, res) => {
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
   try {
     const { id } = req.params;
     const updates = req.body;
@@ -433,74 +275,42 @@ router.patch("/:id", async (req, res) => {
     const uuidRegex =
       /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
     if (!uuidRegex.test(id)) {
-<<<<<<< HEAD
-      return res.status(400).json({ error: 'Invalid category ID format' });
-=======
       return res.status(400).json({ error: "Invalid category ID format" });
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
     }
 
     // Check if category exists
     const existingCategory = await pgQuery(
-<<<<<<< HEAD
-      'SELECT * FROM categories WHERE id = $1',
-      [id]
-    );
-    if (existingCategory.rows.length === 0) {
-      return res.status(404).json({ error: 'Category not found' });
-=======
       "SELECT * FROM categories WHERE id = $1",
       [id]
     );
     if (existingCategory.rows.length === 0) {
       return res.status(404).json({ error: "Category not found" });
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
     }
 
     // Validate name if provided
     if (updates.name !== undefined) {
       if (
         !updates.name ||
-<<<<<<< HEAD
-        typeof updates.name !== 'string' ||
-        updates.name.trim().length === 0
-      ) {
-        return res.status(400).json({
-          error: 'Name must be a non-empty string',
-=======
         typeof updates.name !== "string" ||
         updates.name.trim().length === 0
       ) {
         return res.status(400).json({
           error: "Name must be a non-empty string",
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
         });
       }
       if (updates.name.length > 100) {
         return res.status(400).json({
-<<<<<<< HEAD
-          error: 'Name must be 100 characters or less',
-=======
           error: "Name must be 100 characters or less",
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
         });
       }
     }
 
     const allowedFields = [
-<<<<<<< HEAD
-      'name',
-      'description',
-      'image_url',
-      'is_active',
-      'sort_order',
-=======
       "name",
       "description",
       "image_url",
       "is_active",
       "sort_order",
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
     ];
     const updateFields = [];
     const updateValues = [];
@@ -508,11 +318,7 @@ router.patch("/:id", async (req, res) => {
 
     for (const [key, value] of Object.entries(updates)) {
       if (allowedFields.includes(key)) {
-<<<<<<< HEAD
-        if (key === 'name') {
-=======
         if (key === "name") {
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
           updateFields.push(
             `name = $${valueIndex}`,
             `slug = $${valueIndex + 1}`
@@ -528,20 +334,12 @@ router.patch("/:id", async (req, res) => {
     }
 
     if (updateFields.length === 0) {
-<<<<<<< HEAD
-      return res.status(400).json({ error: 'No valid fields to update' });
-=======
       return res.status(400).json({ error: "No valid fields to update" });
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
     }
 
     const query = `
       UPDATE categories 
-<<<<<<< HEAD
-      SET ${updateFields.join(', ')}
-=======
       SET ${updateFields.join(", ")}
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
       WHERE id = $${valueIndex}
       RETURNING *
     `;
@@ -551,25 +349,6 @@ router.patch("/:id", async (req, res) => {
     const result = await pgQuery(query, updateValues);
 
     res.json({
-<<<<<<< HEAD
-      message: 'Category updated successfully',
-      data: result.rows[0],
-    });
-  } catch (error) {
-    console.error('Error updating category:', error);
-
-    // Handle unique constraint violations
-    if (error.code === '23505') {
-      if (error.constraint === 'categories_name_key') {
-        return res.status(409).json({ error: 'Category name already exists' });
-      }
-      if (error.constraint === 'categories_slug_key') {
-        return res.status(409).json({ error: 'Category slug already exists' });
-      }
-    }
-
-    res.status(500).json({ error: 'Internal server error' });
-=======
       message: "Category updated successfully",
       data: result.rows[0],
     });
@@ -587,16 +366,11 @@ router.patch("/:id", async (req, res) => {
     }
 
     res.status(500).json({ error: "Internal server error" });
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
   }
 });
 
 // DELETE /api/categories/:id - Delete category
-<<<<<<< HEAD
-router.delete('/:id', async (req, res) => {
-=======
 router.delete("/:id", async (req, res) => {
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
   try {
     const { id } = req.params;
 
@@ -604,44 +378,15 @@ router.delete("/:id", async (req, res) => {
     const uuidRegex =
       /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
     if (!uuidRegex.test(id)) {
-<<<<<<< HEAD
-      return res.status(400).json({ error: 'Invalid category ID format' });
-    }
-
-    const result = await pgQuery(
-      'DELETE FROM categories WHERE id = $1 RETURNING *',
-=======
       return res.status(400).json({ error: "Invalid category ID format" });
     }
 
     const result = await pgQuery(
       "DELETE FROM categories WHERE id = $1 RETURNING *",
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
       [id]
     );
 
     if (result.rows.length === 0) {
-<<<<<<< HEAD
-      return res.status(404).json({ error: 'Category not found' });
-    }
-
-    res.json({
-      message: 'Category deleted successfully',
-      data: result.rows[0],
-    });
-  } catch (error) {
-    console.error('Error deleting category:', error);
-
-    // Handle foreign key constraint violations
-    if (error.code === '23503') {
-      return res.status(409).json({
-        error:
-          'Cannot delete category because it is referenced by other records',
-      });
-    }
-
-    res.status(500).json({ error: 'Internal server error' });
-=======
       return res.status(404).json({ error: "Category not found" });
     }
 
@@ -661,16 +406,11 @@ router.delete("/:id", async (req, res) => {
     }
 
     res.status(500).json({ error: "Internal server error" });
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
   }
 });
 
 // PUT /api/categories/:id/toggle-active - Toggle category active status
-<<<<<<< HEAD
-router.put('/:id/toggle-active', async (req, res) => {
-=======
 router.put("/:id/toggle-active", async (req, res) => {
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
   try {
     const { id } = req.params;
 
@@ -678,35 +418,15 @@ router.put("/:id/toggle-active", async (req, res) => {
     const uuidRegex =
       /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
     if (!uuidRegex.test(id)) {
-<<<<<<< HEAD
-      return res.status(400).json({ error: 'Invalid category ID format' });
-    }
-
-    const result = await pgQuery(
-      'UPDATE categories SET is_active = NOT is_active WHERE id = $1 RETURNING *',
-=======
       return res.status(400).json({ error: "Invalid category ID format" });
     }
 
     const result = await pgQuery(
       "UPDATE categories SET is_active = NOT is_active WHERE id = $1 RETURNING *",
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
       [id]
     );
 
     if (result.rows.length === 0) {
-<<<<<<< HEAD
-      return res.status(404).json({ error: 'Category not found' });
-    }
-
-    res.json({
-      message: 'Category status toggled successfully',
-      data: result.rows[0],
-    });
-  } catch (error) {
-    console.error('Error toggling category status:', error);
-    res.status(500).json({ error: 'Internal server error' });
-=======
       return res.status(404).json({ error: "Category not found" });
     }
 
@@ -717,7 +437,6 @@ router.put("/:id/toggle-active", async (req, res) => {
   } catch (error) {
     console.error("Error toggling category status:", error);
     res.status(500).json({ error: "Internal server error" });
->>>>>>> 05ebd0c2381dccb62574bfd9361096b6febb95c5
   }
 });
 
