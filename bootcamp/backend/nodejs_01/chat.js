@@ -1,7 +1,8 @@
 import OpenAI from "openai";
 import readlineSync from "readline-sync";
 
-const OPEN_AI_API_KEY = "";
+const OPEN_AI_API_KEY =
+  "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";
 
 const client = new OpenAI({
   apiKey: OPEN_AI_API_KEY,
