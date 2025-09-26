@@ -102,7 +102,7 @@
 
 #### ✅ 1. Admin Login
 
-- [ ] Create Admin login API
+- [✅] Create Admin login API
 - [ ] Build Admin login frontend
 - [ ] Implement role-based access control
 - [ ] Add session management
@@ -166,12 +166,14 @@
 
 #### ✅ 1. Register with Email & Password
 
-- [ ] Create user registration form
+- [✅] Create user registration API
+- [] Create user registration form
 - [ ] Email verification link
-- [ ] Store credentials securely
+- [✅] Store credentials securely
 
 #### ✅ 2. Login if Verified
 
+- [✅] Login API
 - [ ] Login form
 - [ ] Block login if not verified
 - [ ] Redirect with appropriate message

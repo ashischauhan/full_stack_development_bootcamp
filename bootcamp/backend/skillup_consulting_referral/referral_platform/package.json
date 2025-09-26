@@ -10,8 +10,12 @@
   },
   "dependencies": {
     "@prisma/client": "^6.16.2",
+    "@sendgrid/mail": "^8.1.6",
+    "bcrypt": "^6.0.0",
     "cross-env": "^7.0.3",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "vite-express": "*"
