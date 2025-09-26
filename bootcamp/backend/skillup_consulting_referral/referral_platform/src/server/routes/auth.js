@@ -20,8 +20,6 @@ router.post("/register", async (req, res) => {
   }
 });
 
-export default router;
-
 router.post("/login", async (req, res) => {
   // Login logic here
   try {
@@ -35,3 +33,38 @@ router.post("/login", async (req, res) => {
       .json({ message: "Could not log in user", error: error.message });
   }
 });
+
+router.post("/forgot-password", async (req, res) => {
+  // Forgot password logic here
+  try {
+    const body = req.body;
+    const message = await authService.forgotPassword(body);
+    res.status(200).json({ message });
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({
+      message: "Could not initiate password reset",
+      error: error.message,
+    });
+  }
+});
+
+router.post("/reset-password", async (req, res) => {
+  // Reset password logic here
+  try {
+    const body = req.body;
+    const token = req.rawHeaders[1];
+    await authService.resetPassword(body, token);
+    const message = "Password reset successfully";
+
+    res.status(200).json({ message });
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({
+      message: "Could not reset password",
+      error: error.message,
+    });
+  }
+});
+
+export default router;

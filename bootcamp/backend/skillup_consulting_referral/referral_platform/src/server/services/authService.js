@@ -66,3 +66,57 @@ export async function loginUser(data) {
   );
   return token;
 }
+
+export async function forgotPassword(data) {
+  const { email } = data;
+  if (!email) {
+    throw new Error("Email is required");
+  }
+  const user = await prisma.user.findUnique({
+    where: { email },
+  });
+  if (!user) {
+    throw new Error("User with this email does not exist");
+  }
+  // In real app, generate a secure token and save it with expiry in DB
+  const resetToken = jwt.sign(
+    { id: user.id, email: user.email },
+    process.env.JWT_SECRET,
+    { expiresIn: "15m" }
+  );
+  const resetLink = `${process.env.FRONTEND_URL}/reset-password?token=${resetToken}`;
+  await emailService.sendEmail(
+    user.email,
+    "Password Reset Request",
+    `Hello ${user.firstName},\n\nYou can reset your password using the following link: ${resetLink}\nThis link will expire in 15 minutes.\n\nIf you did not request a password reset, please ignore this email.\n\nBest regards,\nSkillUp Consulting Team`
+  );
+  return "Password reset link has been sent to your email";
+}
+
+export async function resetPassword(data, token) {
+  console.log({ data, token });
+  if (!token) {
+    throw new Error("Reset token is required");
+  }
+  if (!data.password) {
+    throw new Error("New password is required");
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    const userId = decoded.id;
+    const hashedPassword = await bcrypt.hash(
+      data.password,
+      parseInt(process.env.PASSWORD_SALT_ROUNDS)
+    );
+    await prisma.user.update({
+      where: { id: userId },
+      data: { password: hashedPassword },
+    });
+    return "Password has been reset successfully";
+  } catch (err) {
+    console.log(err.message);
+    throw new Error("Invalid or expired token");
+  }
+}

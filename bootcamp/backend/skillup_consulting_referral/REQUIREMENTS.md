@@ -168,7 +168,7 @@
 
 - [✅] Create user registration API
 - [] Create user registration form
-- [ ] Email verification link
+- [] Email verification link
 - [✅] Store credentials securely
 
 #### ✅ 2. Login if Verified
