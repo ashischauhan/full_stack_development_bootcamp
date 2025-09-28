@@ -1,8 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
   provider = "prisma-client-js"
@@ -26,23 +24,6 @@ model AdminUser {
 }
 
 
-// Define other models here and run `npx prisma db push` to apply them to the database
-// Learn more about Prisma Migrate: https://pris.ly/d/migrate 
-
-// Use Prisma Studio to view and edit data in your database: https://pris.ly/d/studio 
-// Use Prisma Client to query your database in TypeScript/JavaScript: https://pris.ly/d/client  
-// Use Prisma Data Platform to manage your databases and data: https://pris.ly/d/dataplatform 
-// Use Prisma with GraphQL: https://pris.ly/d/graphql
-// Use Prisma with REST APIs: https://pris.ly/d/rest
-// Use Prisma with Next.js: https://pris.ly/d/nextjs
-// Use Prisma with NestJS: https://pris.ly/d/nestjs
-// Use Prisma with Serverless Functions: https://pris.ly/d/serverless
-// Use Prisma with Edge Functions: https://pris.ly/d/edge
-// Use Prisma with Docker: https://pris.ly/d/docker
-// Use Prisma with CockroachDB: https://pris.ly/d/cockroachdb
-// Use Prisma with MongoDB: https://pris.ly/d/mongodb
-// Use Prisma with MySQL: https://pris.ly/d/mysql
-
 model User {
   id        Int      @id @default(autoincrement())
   firstName String
@@ -56,4 +37,30 @@ model User {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  referrals Referral[]
+}
+
+model Referral {
+  id          Int      @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  email       String
+  mobile     String?
+  address    String?
+  message    String?
+
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+
+  status     ReferralStatus  @default(PENDING)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum ReferralStatus {
+  PENDING
+  APPROVED
+  REJECTED
 }

@@ -175,7 +175,7 @@
 
 - [✅] Login API
 - [ ] Login form
-- [ ] Block login if not verified
+- [✅] Block login if not verified
 - [ ] Redirect with appropriate message
 
 #### ✅ 3. Show "Not Verified" Message
@@ -221,3 +221,12 @@
 - [ ] Add info: "Show this ID at checkout to redeem discount"
 
 ---
+
+dashain vacation homework
+
+Create APIs for
+-Add new referral
+-Update referral
+-Get all referrals (pagination, order by )
+-Get a referral by id
+-Delete referral

@@ -53,6 +53,10 @@ export async function loginUser(data) {
     throw new Error("Invalid password");
   }
 
+  if (!user.isVerified) {
+    throw new Error("Email not verified");
+  }
+
   const token = jwt.sign(
     {
       id: user.id,
